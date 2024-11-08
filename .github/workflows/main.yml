@@ -7,17 +7,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the repository
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
+      # Step 2: Set up Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.9"
 
+      # Step 3: Install required packages
       - name: Install packages
         run: pip install -r requirements.txt
 
+      # Step 4: Run Git Bisect script
+      - name: Run Git Bisect
+        run: |
+          # Make sure the bisect script (myscript.py) is in your repo
+          python myscript.py
+
+      # Step 5: Run tests
       - name: Run tests
         run: python manage.py test
